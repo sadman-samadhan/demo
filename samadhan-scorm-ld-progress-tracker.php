@@ -94,7 +94,7 @@ function samadhan_rise_progress_translate($course_id,$progress = array(),$lesson
 
     foreach ($progress_data as $data) {
 
-
+        //this function gets the progress data
         $data = json_decode($data->value);
         $dec_data = samadhan_decompress($data->d);
         $dec_data = str_replace(':,', ':0,', $dec_data);
