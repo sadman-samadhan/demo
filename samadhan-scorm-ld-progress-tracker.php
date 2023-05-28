@@ -94,7 +94,7 @@ function samadhan_rise_progress_translate($course_id,$progress = array(),$lesson
 
     foreach ($progress_data as $data) {
 
-        //this function gets the progress data
+        
         $data = json_decode($data->value);
         $dec_data = samadhan_decompress($data->d);
         $dec_data = str_replace(':,', ':0,', $dec_data);
@@ -147,32 +147,6 @@ function samadhan_rise_progress_translate($course_id,$progress = array(),$lesson
 
     return $progress;
 }
-
-/*
-function samadhan_learndash_user_profile_lesson_progress($user_id, $lesson_id, $progress = [])
-{
-
-    global $post, $wpdb;
-
-
-    $progress_data = $wpdb->get_row("SELECT value FROM {$wpdb->prefix}uotincan_resume WHERE state = 'suspend_data' and lesson_id = $lesson_id and user_id=$user_id", OBJECT);
-
-    if (isset($progress_data)) {
-        $data = json_decode($progress_data->value);
-        $dec_data = samadhan_decompress($data->d);
-        $progress = json_decode($dec_data, true);
-        $percentage = $progress['progress']['p'];
-        $completed_lessons = count($progress['progress']['lessons']);
-        $progress["percentage"] = $percentage;
-        $progress["completed"] = $completed_lessons;
-        $progress["total"] = ceil($completed_lessons * 100 / $percentage);
-
-    }
-    return $progress;
-
-
-}
-*/
 
 add_filter('learndash_process_mark_complete', 'smdn_get_learndash_process_mark_complete', 10, 3);
 function smdn_get_learndash_process_mark_complete($true, $post, $current_user)
